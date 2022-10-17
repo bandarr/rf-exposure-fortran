@@ -14,13 +14,6 @@ program rfe
         real :: k2
     end type
 
-    contains 
-
-        function calculate_reflection_coefficient( freq_values )
-            real calculate_reflection_coefficient   
-            calculate_reflection_coefficient = abs((freq_values.swr - 1)/(freq_values%swr + 1))
-        end function calculate_reflection_coefficient
-
     real    :: xmtr_power = 1000
     integer :: feed_line_length = 73
     real    :: duty_cycle = .5
@@ -30,6 +23,16 @@ program rfe
     cable_values = cablevalues(0.122290, 0.000260)
 
     type(frequencyvalues), dimension(6) :: freq_values
+
+    contains 
+
+        function calculate_reflection_coefficient( freq_values )
+            type(frequencyvalues) freq_values
+            real calculate_reflection_coefficient   
+            calculate_reflection_coefficient = abs((freq_values%swr - 1)/(freq_values%swr + 1))
+        end function calculate_reflection_coefficient
+
+
 
 end program rfe
 
